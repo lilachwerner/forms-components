@@ -8,11 +8,17 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { InputType } from "./types/input.types";
 export { InputType } from "./types/input.types";
 export namespace Components {
+    interface FcContainer {
+    }
     interface FcInput {
         "disabled": boolean;
         "label": string;
         "placeholder": string;
         "type": InputType;
+    }
+    interface FcSelect {
+        "defaultValue": string;
+        "options": string[];
     }
     interface FcText {
         "cols": number;
@@ -37,11 +43,23 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLFcContainerElement extends Components.FcContainer, HTMLStencilElement {
+    }
+    var HTMLFcContainerElement: {
+        prototype: HTMLFcContainerElement;
+        new (): HTMLFcContainerElement;
+    };
     interface HTMLFcInputElement extends Components.FcInput, HTMLStencilElement {
     }
     var HTMLFcInputElement: {
         prototype: HTMLFcInputElement;
         new (): HTMLFcInputElement;
+    };
+    interface HTMLFcSelectElement extends Components.FcSelect, HTMLStencilElement {
+    }
+    var HTMLFcSelectElement: {
+        prototype: HTMLFcSelectElement;
+        new (): HTMLFcSelectElement;
     };
     interface HTMLFcTextElement extends Components.FcText, HTMLStencilElement {
     }
@@ -56,17 +74,25 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "fc-container": HTMLFcContainerElement;
         "fc-input": HTMLFcInputElement;
+        "fc-select": HTMLFcSelectElement;
         "fc-text": HTMLFcTextElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface FcContainer {
+    }
     interface FcInput {
         "disabled"?: boolean;
         "label"?: string;
         "placeholder"?: string;
         "type"?: InputType;
+    }
+    interface FcSelect {
+        "defaultValue"?: string;
+        "options"?: string[];
     }
     interface FcText {
         "cols"?: number;
@@ -90,7 +116,9 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "fc-container": FcContainer;
         "fc-input": FcInput;
+        "fc-select": FcSelect;
         "fc-text": FcText;
         "my-component": MyComponent;
     }
@@ -99,7 +127,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "fc-container": LocalJSX.FcContainer & JSXBase.HTMLAttributes<HTMLFcContainerElement>;
             "fc-input": LocalJSX.FcInput & JSXBase.HTMLAttributes<HTMLFcInputElement>;
+            "fc-select": LocalJSX.FcSelect & JSXBase.HTMLAttributes<HTMLFcSelectElement>;
             "fc-text": LocalJSX.FcText & JSXBase.HTMLAttributes<HTMLFcTextElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }

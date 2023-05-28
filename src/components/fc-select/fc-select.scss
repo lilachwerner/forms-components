@@ -1,0 +1,26 @@
+.fc-select {
+  width: fit-content;
+}
+
+.fc-select-trigger {
+  border: thick double #32a1ce;
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e4e4e4;
+  }
+}
+
+.fc-select-dropdown {
+  border: 1px solid;
+}
+
+.fc-select-option {
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e4e4e4;
+  }
+}

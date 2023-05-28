@@ -1,7 +1,7 @@
 import { Component, Prop, h } from '@stencil/core';
 @Component({
   tag: 'fc-text',
-  styleUrl: 'fc-text.css',
+  styleUrl: 'fc-text.scss',
   shadow: true,
 })
 export class FcText {

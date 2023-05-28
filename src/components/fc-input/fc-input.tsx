@@ -3,7 +3,7 @@ import { InputType } from '../../types/input.types';
 
 @Component({
   tag: 'fc-input',
-  styleUrl: 'fc-input.css',
+  styleUrl: 'fc-input.scss',
   shadow: true,
 })
 export class FcInput {
