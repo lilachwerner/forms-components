@@ -5,10 +5,18 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { IFormData } from "./types/form-data.interface";
 import { InputType } from "./types/input.types";
+export { IFormData } from "./types/form-data.interface";
 export { InputType } from "./types/input.types";
 export namespace Components {
+    interface FcCheckbox {
+        "isChecked": boolean;
+    }
     interface FcContainer {
+    }
+    interface FcForm {
+        "form": IFormData;
     }
     interface FcInput {
         "disabled": boolean;
@@ -42,12 +50,36 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface FcCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLFcCheckboxElement;
+}
+export interface FcInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLFcInputElement;
+}
+export interface FcSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLFcSelectElement;
+}
 declare global {
+    interface HTMLFcCheckboxElement extends Components.FcCheckbox, HTMLStencilElement {
+    }
+    var HTMLFcCheckboxElement: {
+        prototype: HTMLFcCheckboxElement;
+        new (): HTMLFcCheckboxElement;
+    };
     interface HTMLFcContainerElement extends Components.FcContainer, HTMLStencilElement {
     }
     var HTMLFcContainerElement: {
         prototype: HTMLFcContainerElement;
         new (): HTMLFcContainerElement;
+    };
+    interface HTMLFcFormElement extends Components.FcForm, HTMLStencilElement {
+    }
+    var HTMLFcFormElement: {
+        prototype: HTMLFcFormElement;
+        new (): HTMLFcFormElement;
     };
     interface HTMLFcInputElement extends Components.FcInput, HTMLStencilElement {
     }
@@ -74,7 +106,9 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "fc-checkbox": HTMLFcCheckboxElement;
         "fc-container": HTMLFcContainerElement;
+        "fc-form": HTMLFcFormElement;
         "fc-input": HTMLFcInputElement;
         "fc-select": HTMLFcSelectElement;
         "fc-text": HTMLFcTextElement;
@@ -82,16 +116,25 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface FcCheckbox {
+        "isChecked"?: boolean;
+        "onCheckboxChange"?: (event: FcCheckboxCustomEvent<boolean>) => void;
+    }
     interface FcContainer {
+    }
+    interface FcForm {
+        "form"?: IFormData;
     }
     interface FcInput {
         "disabled"?: boolean;
         "label"?: string;
+        "onInputChange"?: (event: FcInputCustomEvent<{ [label: string]: any }>) => void;
         "placeholder"?: string;
         "type"?: InputType;
     }
     interface FcSelect {
         "defaultValue"?: string;
+        "onSelectChange"?: (event: FcSelectCustomEvent<string>) => void;
         "options"?: string[];
     }
     interface FcText {
@@ -116,7 +159,9 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "fc-checkbox": FcCheckbox;
         "fc-container": FcContainer;
+        "fc-form": FcForm;
         "fc-input": FcInput;
         "fc-select": FcSelect;
         "fc-text": FcText;
@@ -127,7 +172,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "fc-checkbox": LocalJSX.FcCheckbox & JSXBase.HTMLAttributes<HTMLFcCheckboxElement>;
             "fc-container": LocalJSX.FcContainer & JSXBase.HTMLAttributes<HTMLFcContainerElement>;
+            "fc-form": LocalJSX.FcForm & JSXBase.HTMLAttributes<HTMLFcFormElement>;
             "fc-input": LocalJSX.FcInput & JSXBase.HTMLAttributes<HTMLFcInputElement>;
             "fc-select": LocalJSX.FcSelect & JSXBase.HTMLAttributes<HTMLFcSelectElement>;
             "fc-text": LocalJSX.FcText & JSXBase.HTMLAttributes<HTMLFcTextElement>;

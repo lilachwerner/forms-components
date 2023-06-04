@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, State, h } from '@stencil/core';
 
 @Component({
   tag: 'fc-select',
@@ -11,6 +11,8 @@ export class FcSelect {
   @State() value: string = this.defaultValue;
   @State() isOpen: Boolean = false;
 
+  @Event({ bubbles: true }) selectChange: EventEmitter<string>;
+
   componentWillLoad() {
     this.value = this.defaultValue;
   }
@@ -18,6 +20,7 @@ export class FcSelect {
   handleOptionSelect(option: string) {
     this.value = option;
     this.isOpen = false;
+    this.selectChange.emit(this.value);
   }
 
   dropdownOpen() {

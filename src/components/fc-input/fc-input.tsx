@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
 import { InputType } from '../../types/input.types';
 
 @Component({
@@ -12,11 +12,17 @@ export class FcInput {
   @Prop() label: string = "Please enter you name"
   @Prop() placeholder: string = "Please fill here your name"
 
+  @Event() inputChange: EventEmitter<{ [label: string]: any }>;
+
+  public handleInputChange(event) {
+    this.inputChange.emit({ [this.label]: event.target.value });
+  }
+
   render() {
     return (
       <div class="input">
         <label>{this.label}</label><br />
-        <input name={this.label} type={this.type} placeholder={this.placeholder} disabled={this.disabled}></input>
+        <input onInput={(event) => this.handleInputChange(event)} name={this.label} type={this.type} placeholder={this.placeholder} disabled={this.disabled}></input>
       </div>
     );
   }
