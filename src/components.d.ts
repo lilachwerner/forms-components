@@ -28,6 +28,9 @@ export namespace Components {
         "defaultValue": string;
         "options": string[];
     }
+    interface FcStocks {
+        "symbol": string;
+    }
     interface FcText {
         "cols": number;
         "disabled": boolean;
@@ -93,6 +96,12 @@ declare global {
         prototype: HTMLFcSelectElement;
         new (): HTMLFcSelectElement;
     };
+    interface HTMLFcStocksElement extends Components.FcStocks, HTMLStencilElement {
+    }
+    var HTMLFcStocksElement: {
+        prototype: HTMLFcStocksElement;
+        new (): HTMLFcStocksElement;
+    };
     interface HTMLFcTextElement extends Components.FcText, HTMLStencilElement {
     }
     var HTMLFcTextElement: {
@@ -111,6 +120,7 @@ declare global {
         "fc-form": HTMLFcFormElement;
         "fc-input": HTMLFcInputElement;
         "fc-select": HTMLFcSelectElement;
+        "fc-stocks": HTMLFcStocksElement;
         "fc-text": HTMLFcTextElement;
         "my-component": HTMLMyComponentElement;
     }
@@ -136,6 +146,9 @@ declare namespace LocalJSX {
         "defaultValue"?: string;
         "onSelectChange"?: (event: FcSelectCustomEvent<string>) => void;
         "options"?: string[];
+    }
+    interface FcStocks {
+        "symbol"?: string;
     }
     interface FcText {
         "cols"?: number;
@@ -164,6 +177,7 @@ declare namespace LocalJSX {
         "fc-form": FcForm;
         "fc-input": FcInput;
         "fc-select": FcSelect;
+        "fc-stocks": FcStocks;
         "fc-text": FcText;
         "my-component": MyComponent;
     }
@@ -177,6 +191,7 @@ declare module "@stencil/core" {
             "fc-form": LocalJSX.FcForm & JSXBase.HTMLAttributes<HTMLFcFormElement>;
             "fc-input": LocalJSX.FcInput & JSXBase.HTMLAttributes<HTMLFcInputElement>;
             "fc-select": LocalJSX.FcSelect & JSXBase.HTMLAttributes<HTMLFcSelectElement>;
+            "fc-stocks": LocalJSX.FcStocks & JSXBase.HTMLAttributes<HTMLFcStocksElement>;
             "fc-text": LocalJSX.FcText & JSXBase.HTMLAttributes<HTMLFcTextElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
