@@ -1,7 +1,7 @@
 {
-  "name": "forms-components",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "name": "lilachwer-forms-components",
+  "version": "0.1.0",
+  "description": "Multiple form components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -14,16 +14,19 @@
     "type": "git",
     "url": "https://github.com/ionic-team/stencil-component-starter.git"
   },
+  "auther": "Lilach werner lilachwerner@gmail.com",
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "readme.md"
   ],
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "release": "npm version patch && npm publish"
   },
   "dependencies": {
     "@stencil/core": "^3.3.0",
